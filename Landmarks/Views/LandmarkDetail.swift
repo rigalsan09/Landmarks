@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct LandmarkDetail: View {
+    var landmark: Landmark
+    
     var body: some View {
-        VStack {
-            MapView()
+        ScrollView {
+            MapView(coordinate: landmark.locationCoordinate)
                 .frame(height: 200)
             
-            CircleImage()
+            CircleImage(image: Image("turtlerock"))
                 .offset(y: -60)
                 .padding(.bottom, -130)
             
@@ -39,14 +41,13 @@ struct LandmarkDetail: View {
                 
                 Text("Descriptive text goes here.")
             }
-            
+        
             .padding()
-            
-            Spacer()
         }
+        .navigationTitle(landmark.name)
     }
 }
 
 #Preview {
-    LandmarkDetail()
+    LandmarkDetail(landmark: landmarks[0])
 }
